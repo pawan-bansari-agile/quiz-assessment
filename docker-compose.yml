@@ -38,15 +38,15 @@ services:
       timeout: 5s
       retries: 5
 
-  # kbc-quiz-frontend:
-  #   build:
-  #     context: ./quiz-app # Adjust the context to the Angular project directory
-  #     dockerfile: Dockerfile
-  #   container_name: kbc-quiz-frontend
-  #   ports:
-  #     - '4200:4200'
-  #   networks:
-  #     - kbc-quiz-network
+  kbc-quiz-frontend:
+    build:
+      context: ./quiz-app # Adjust the context to the Angular project directory
+      dockerfile: Dockerfile
+    container_name: kbc-quiz-frontend
+    ports:
+      - '4200:4200'
+    networks:
+      - kbc-quiz-network
 
 networks:
   kbc-quiz-network:
