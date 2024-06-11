@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="start-game">
+    <h2>Start a New Game</h2>
+    <div class="input-group">
+      <label for="displayName">Display Name:</label>
+      <input type="text" id="displayName" [(ngModel)]="displayName" />
+      <button (click)="startGame()">Start Game</button>
+    </div>
+  </div>
+
+  <div class="leaderboard">
+    <h2>Leaderboard</h2>
+
+    <!-- Message for no data or error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Leaderboard table -->
+    <table *ngIf="!errorMessage">
+      <thead>
+        <tr>
+          <th>Display Name</th>
+          <th>Prize Money</th>
+          <th>Start Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of leaderboard">
+          <td>{{ player.displayName }}</td>
+          <td>{{ player.prizeMoney }}</td>
+          <td>{{ player.startTime | date : "short" }}</td>
+          <td>{{ player.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="main-content">
+    <div class="question-section">
+      <h2>Current Question</h2>
+      <div *ngIf="currentQuestion">
+        <p class="question">{{ currentQuestion.question }}</p>
+        <div class="options">
+          <div class="option" *ngFor="let option of currentQuestion.options">
+            <input
+              type="radio"
+              [(ngModel)]="selectedOption"
+              [value]="option"
+              id="{{ option }}"
+            />
+            <label
+              [class.selected]="selectedOption === option"
+              for="{{ option }}"
+              >{{ option }}</label
+            >
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="main-button" (click)="submitAnswer()">
+            Lock Answer
+          </button>
+          <button
+            *ngIf="showNextQuestionButton"
+            class="main-button"
+            (click)="gotoNextQuestion()"
+          >
+            Next Question
+          </button>
+          <button class="secondary-button" (click)="quitGame()">
+            Quit Game
+          </button>
+          <button class="secondary-button" (click)="useLifeline50()">
+            50-50
+          </button>
+          <button class="secondary-button" (click)="useAskTheAI()">
+            Ask the AI
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showCorrectAnswer" class="correct-answer">
+      <h3>The correct answer was: {{ correctAnswer }}</h3>
+    </div>
+  </div>
+
+  <div class="prize-section">
+    <h2>Prize Levels</h2>
+    <ul>
+      <li
+        *ngFor="let level of prizeLevels; let i = index"
+        [class.current]="i === currentPrizeIndex"
+      >
+        {{ level }}
+      </li>
+    </ul>
+  </div>
+</div>
